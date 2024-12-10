@@ -70,7 +70,7 @@ Due to deployment issues on Hugging Face Spaces, we decided to implement the inf
 ## Task2: Improve pipeline scalability and model performance
 
 ### Model-Centric Approach
-
+We have applied two model-centric  strategies to improve the overall performance of the task. First, We have explored different combinations of hyper parameters,including batch size, learning rate and optimizers, to achieve the best performance. Additionally, we apply the layer-frozen technique to fine tune the model, which train the whole model for the first half of the model and focus on the deeper layers for the rest of the epochs, enabling the fine-grained  text generation.
 ### Data-Centric Approach
 In this task, we explored how incrementally increasing training data sizes affects language model performance. We utilized three versions of the Model. The baseline model, Model 1, was trained on 100k data points from mlabonne/FineTome-100k. For the subsequent models, we expanded the training data by adding additional samples randomly selected from arcee-ai/The-Tome. Specifically, Model 2 included an additional 100k data points for a total of 200k, and Model 3 included an additional 200k data points from The Tome, accumulating a total of 300k data points.
 
