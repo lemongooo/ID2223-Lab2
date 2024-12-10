@@ -3,7 +3,7 @@
 ## Task1: Llama 3.2 Fine-tuning Pipeline
 
 ### Dataset
-- Used mlabonne/FineTome-100K dataset
+- Used [**mlabonne/FineTome-100K**](https://huggingface.co/datasets/mlabonne/FineTome-100k) dataset
 - ShareGPT format conversations, standardized to HuggingFace format
 ### Model
 - Base Model: Llama-3.2 3B Instruct (4-bit)
