@@ -59,7 +59,7 @@ Training uses the `SFTTrainer` from Hugging Face's TRL:
      ```
 
 
-Regarding checkpoint functionality,We configured checkpoints for automatic saving during training. In this project, the training progress is saved every 10 steps, ensuring the procedures are consistently backed up. Additionally, the intermediate results are automatically stored on Google Drive for convenient access and further analysis.
+Regarding checkpoint functionality, We configured checkpoints for automatic saving during training. In this project, the training progress is saved every 10 steps, ensuring the procedures are consistently backed up. Additionally, the intermediate results are automatically stored on Google Drive for convenient access and further analysis.
 
 ### Inference Pipeline
 
