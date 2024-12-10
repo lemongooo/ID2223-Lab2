@@ -14,7 +14,7 @@ Unsloth significantly enhances the training pipeline by providing a 2x speedup i
 
 ### Key Steps
 1. **Model Loading:**
-   - Load a pretrained Llama-3.2 model with 4-bit quantization:
+Load a pretrained Llama-3.2 model with 4-bit quantization:
      ```python
      model, tokenizer = FastLanguageModel.from_pretrained(
          model_name="unsloth/Llama-3.2-3B-Instruct",
@@ -24,7 +24,7 @@ Unsloth significantly enhances the training pipeline by providing a 2x speedup i
      ```
 
 2. **LoRA Integration:**
-   - LoRA parameters are set for fine-tuning:
+LoRA parameters are set for fine-tuning:
      ```python
      model = FastLanguageModel.get_peft_model(
          model,
@@ -37,13 +37,10 @@ Unsloth significantly enhances the training pipeline by providing a 2x speedup i
      ```
 
 3. **Data Preparation:**
-   - Dataset formatted for conversational tasks using templates:
-     ```python
-     tokenizer = get_chat_template(tokenizer, chat_template="llama-3.1")
-     ```
+Standardize a ShareGPT-style dataset to a Hugging Face-compatible format and then formats the conversations using a specific chat template (llama-3.1) to prepare the data for model fine-tuning.
 
 4. **Training Setup:**
-   - Training uses the `SFTTrainer` from Hugging Face's TRL:
+Training uses the `SFTTrainer` from Hugging Face's TRL:
      ```python
      trainer = SFTTrainer(
          model=model,
@@ -58,7 +55,6 @@ Unsloth significantly enhances the training pipeline by providing a 2x speedup i
          ),
      )
      ```
-   - Loss is applied only to assistant-generated outputs (`train_on_responses_only`).
 
 
 
