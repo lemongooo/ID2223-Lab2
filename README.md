@@ -64,7 +64,8 @@ Regarding checkpoint functionality, we configured checkpoints for automatic savi
 ### Inference Pipeline
 
 Due to deployment issues on Hugging Face Spaces, we decided to implement the inference pipeline using Colab. The model has been customized to function as a **recipe generator chatbot**. Users can input a list of ingredients, and the chatbot will generate a detailed recipe, including preparation steps and tips. 
-![Local Image](./recipe.png "User Interface")
+https://github.com/user-attachments/assets/f698249b-05ba-45cb-84fa-c51d68014b8e
+
 
 
 ## Task2: Improve pipeline scalability and model performance
