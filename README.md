@@ -3,10 +3,11 @@
 ## Task1: Llama 3.2 Fine-tuning Pipeline
 
 ### Dataset
-- Used [**mlabonne/FineTome-100K**](https://huggingface.co/datasets/mlabonne/FineTome-100k) dataset
+- [**mlabonne/FineTome-100K**](https://huggingface.co/datasets/mlabonne/FineTome-100k) dataset
 - ShareGPT format conversations, standardized to HuggingFace format
 ### Model
 - Base Model: Llama-3.2 3B Instruct (4-bit)
+
 Llama-3.2 3B Instruct is Meta's latest compact instruction-tuned model, offering a balanced solution for fine-tuning tasks. The model comes with built-in conversation templates, making it particularly suitable for dialogue-based applications.
 
 ### Unsloth Optimization
