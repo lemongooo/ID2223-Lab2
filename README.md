@@ -60,11 +60,10 @@ Training uses the `SFTTrainer` from Hugging Face's TRL:
 
 
 
+### Inference Pipeline
 
-### Inference pipeline
-We create a separate inference notebook to demonstrate our model's capabilities by loading the fine-tuned model from the HuggingFace Hub.
-Here is the user interface of the [Chatbot](https://01d5dc87bc95327602.gradio.live/).
-![Local Image](./ui.png "User Interface")
+Due to deployment issues on Hugging Face Spaces, we decided to implement the inference pipeline using Colab. The model has been customized to function as a **recipe generator chatbot**. Users can input a list of ingredients, and the chatbot will generate a detailed recipe, including preparation steps and tips. 
+![Local Image](./receipt.png "User Interface")
 
 
 ## Task2: Improve pipeline scalability and model performance
