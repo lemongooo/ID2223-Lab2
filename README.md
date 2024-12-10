@@ -1,4 +1,5 @@
 # ID2223 Lab2
+Group 25 - Mengmeng Yang， Zong-rong Yang
 
 ## Task1: Llama 3.2 Fine-tuning Pipeline
 
