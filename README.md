@@ -10,10 +10,59 @@
 Llama-3.2 3B Instruct is Meta's latest compact instruction-tuned model, offering a balanced solution for fine-tuning tasks. The model comes with built-in conversation templates, making it particularly suitable for dialogue-based applications.
 
 ### Unsloth Optimization
-Unsloth significantly enhances the training pipeline by providing a 2x speedup in both training and inference phases. It implements 4-bit quantization to reduce memory usage while maintaining model quality. The framework also features automatic RoPE scaling for flexible sequence lengths and supports various export formats including LoRA, GGUF, and 16-bit representations. These optimizations are seamlessly integrated with the HuggingFace ecosystem.
+Unsloth significantly enhances the training pipeline by providing a 2x speedup in both training and inference phases. It implements 4-bit quantization to reduce memory usage while maintaining model quality.
 
-### Key Advantages
-This pipeline represents a practical approach to model fine-tuning, combining a compact but capable base model with efficient optimization techniques. The minimal resource requirements and straightforward training process make it accessible for individual developers, while the diverse export options ensure flexibility in deployment scenarios. The integration of Unsloth optimizations particularly stands out in enabling faster experimentation and iteration cycles.
+### Key Steps
+1. **Model Loading:**
+   - Load a pretrained Llama-3.2 model with 4-bit quantization:
+     ```python
+     model, tokenizer = FastLanguageModel.from_pretrained(
+         model_name="unsloth/Llama-3.2-3B-Instruct",
+         max_seq_length=2048,
+         load_in_4bit=True,
+     )
+     ```
+
+2. **LoRA Integration:**
+   - LoRA parameters are set for fine-tuning:
+     ```python
+     model = FastLanguageModel.get_peft_model(
+         model,
+         r=16,
+         target_modules=["q_proj", "k_proj", "v_proj", "o_proj"],
+         lora_alpha=16,
+         lora_dropout=0,
+         use_gradient_checkpointing="unsloth",
+     )
+     ```
+
+3. **Data Preparation:**
+   - Dataset formatted for conversational tasks using templates:
+     ```python
+     tokenizer = get_chat_template(tokenizer, chat_template="llama-3.1")
+     ```
+
+4. **Training Setup:**
+   - Training uses the `SFTTrainer` from Hugging Face's TRL:
+     ```python
+     trainer = SFTTrainer(
+         model=model,
+         tokenizer=tokenizer,
+         train_dataset=dataset,
+         max_seq_length=2048,
+         args=TrainingArguments(
+             per_device_train_batch_size=2,
+             max_steps=60,
+             learning_rate=2e-4,
+             fp16=True,
+         ),
+     )
+     ```
+   - Loss is applied only to assistant-generated outputs (`train_on_responses_only`).
+
+
+
+
 
 ### Inference pipeline
 We create a separate inference notebook to demonstrate our model's capabilities by loading the fine-tuned model from the HuggingFace Hub.
