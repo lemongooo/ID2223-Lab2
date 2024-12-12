@@ -75,17 +75,27 @@ We have applied two model-centric  strategies to improve the overall performance
 ### Data-Centric Approach
 In this task, we explored how incrementally increasing training data sizes affects language model performance. We utilized three versions of the Model. The baseline model, Model 1, was trained on 100k data points from mlabonne/FineTome-100k. For the subsequent models, we expanded the training data by adding additional samples randomly selected from arcee-ai/The-Tome. Specifically, Model 2 included an additional 100k data points for a total of 200k, and Model 3 included an additional 200k data points from The Tome, accumulating a total of 300k data points.
 
-#### Model Evaluation Summary
-The models were evaluated on four diverse tasks using the ROUGE scoring system, focusing on ROUGE-1, ROUGE-2, and ROUGE-L metrics. Each model was run three times to ensure consistency and to calculate standard deviations.
+#### Text Generation Evaluation (ROUGE Metrics)
 
-| Model | Data Size | Average ROUGE-1 | Average ROUGE-2 | Average ROUGE-L | Standard Deviation (ROUGE-1) | Standard Deviation (ROUGE-2) | Standard Deviation (ROUGE-L) |
-|-------|-----------|-----------------|-----------------|-----------------|------------------------------|------------------------------|------------------------------|
+| Model | Data Size | ROUGE-1 | ROUGE-2 | ROUGE-L | Std Dev (R-1) | Std Dev (R-2) | Std Dev (R-L) |
+|-------|-----------|----------|----------|----------|---------------|---------------|---------------|
 | Model 1 | 100k | 0.407 | 0.163 | 0.300 | 0.012 | 0.003 | 0.007 |
 | Model 2 | 200k | 0.402 | 0.157 | 0.301 | 0.019 | 0.020 | 0.009 |
 | Model 3 | 300k | 0.397 | 0.146 | 0.304 | 0.019 | 0.011 | 0.006 |
 
-#### Observations
-The results indicated a slight decrease in ROUGE-1 and ROUGE-2 scores with increasing amounts of training data, while ROUGE-L scores showed minimal variation across the models. Unexpectedly, augmenting the training data did not lead to improved performance, suggesting possible issues with data quality or model capacity.
+#### Translation Evaluation (BLEU Metrics)
+
+| Model | Data Size | BLEU Score | Std Dev |
+|-------|-----------|------------|---------|
+| Model 1 | 100k | 0.382 | 0.093 |
+| Model 2 | 200k | 0.348 | 0.108 |
+| Model 3 | 300k | 0.434 | 0.098 |
+
+
+#### Key Findings
+In text generation, the results indicated a slight decrease in ROUGE-1 and ROUGE-2 scores with increasing amounts of training data, while ROUGE-L scores showed minimal variation across the models. Unexpectedly, augmenting the training data did not lead to improved performance, suggesting possible issues with data quality or model capacity.
+
+In translation testing, the largest model (300k) performed best with a BLEU score of 0.434, doing especially well with Spanish and Italian. However, all models struggled with German translation. Interestingly, the middle-sized model (200k) performed worse than both the smallest and largest models, showing that simply adding more training data doesn't always help improve performance.
 
 #### Future Directions
 Future efforts will focus on refining data quality and tuning model parameters. Additional exploration of alternative metrics for a more comprehensive performance assessment is also planned. Moreover, adjustments in preprocessing and data enhancement strategies will be considered to better leverage the expanded datasets based on the FineTome-100k and further random selections from `The Tome`.
